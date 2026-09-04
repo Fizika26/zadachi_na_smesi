@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Смеси, сплавы и растворы — урок лягушонка</title>
+<title>Смеси, сплавы и растворы </title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Nunito:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -173,12 +173,10 @@ footer { text-align: center; padding: 30px 0 10px; color: #55654f; font-size: 14
 <header class="hero">
   <div class="hero-top">
     <div class="hero-text">
-      <span class="kicker">урок лягушонка</span>
+      <span class="kicker">урок для Пети</span>
       <h1>Смеси, сплавы и растворы</h1>
       <p class="lede">Три задачи, которые выглядят по-разному, решаются одним движением. Секрет в том, чтобы найти то, что при перемешивании не меняется.</p>
-    </div>
-    <div id="heroFrog"></div>
-  </div>
+   
 </header>
 
 <section class="card lab">
@@ -236,29 +234,29 @@ function shuffle(a) {
 }
 
 /* ================= ЛЯГУШОНОК ================= */
-function frog(w, pose) {
-  var ink = "#23201e";
-  var arms = pose === "flask"
-    ? '<path d="M148 170 C186 168 196 142 191 118" fill="none" stroke="' + ink + '" stroke-width="8" stroke-linecap="round"/>' +
-      '<g transform="translate(164,38) scale(0.55)">' +
-        '<path d="M40 44 L14.5 106 Q14.5 113.5 22 113.5 L78 113.5 Q85.5 113.5 85.5 106 L60 44 Z" fill="#d8f2f7"/>' +
-        '<path d="M28 84 L72 84 L85.5 106 Q85.5 113.5 78 113.5 L22 113.5 Q14.5 113.5 14.5 106 Z" fill="#1fa8a0"/>' +
-        '<path d="M40 44 L14.5 106 Q14.5 113.5 22 113.5 L78 113.5 Q85.5 113.5 85.5 106 L60 44 Z" fill="none" stroke="' + ink + '" stroke-width="6" stroke-linejoin="round"/>' +
-        '<path d="M40 44 L40 16 M60 44 L60 16" stroke="' + ink + '" stroke-width="6"/>' +
-        '<rect x="34" y="6" width="32" height="11" rx="5" fill="#d8f2f7" stroke="' + ink + '" stroke-width="5"/>' +
-        '<circle cx="42" cy="96" r="4" fill="#8ee3dc"/><circle cx="58" cy="102" r="3" fill="#8ee3dc"/>' +
-      '</g>' +
-      '<circle cx="191" cy="114" r="14" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>'
-    : '<path d="M148 154 C172 152 182 138 178 126" fill="none" stroke="' + ink + '" stroke-width="8" stroke-linecap="round"/>' +
-      '<circle cx="178" cy="120" r="14" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>';
+//function frog(w, pose) {
+  //var ink = "#23201e";
+  //var arms = pose === "flask"
+   // ? '<path d="M148 170 C186 168 196 142 191 118" fill="none" stroke="' + ink + '" stroke-width="8" stroke-linecap="round"/>' +
+     // '<g transform="translate(164,38) scale(0.55)">' +
+      //  '<path d="M40 44 L14.5 106 Q14.5 113.5 22 113.5 L78 113.5 Q85.5 113.5 85.5 106 L60 44 Z" fill="#d8f2f7"/>' +
+       // '<path d="M28 84 L72 84 L85.5 106 Q85.5 113.5 78 113.5 L22 113.5 Q14.5 113.5 14.5 106 Z" fill="#1fa8a0"/>' +
+       // '<path d="M40 44 L14.5 106 Q14.5 113.5 22 113.5 L78 113.5 Q85.5 113.5 85.5 106 L60 44 Z" fill="none" stroke="' + ink + '" stroke-width="6" stroke-linejoin="round"/>' +
+       // '<path d="M40 44 L40 16 M60 44 L60 16" stroke="' + ink + '" stroke-width="6"/>' +
+        //'<rect x="34" y="6" width="32" height="11" rx="5" fill="#d8f2f7" stroke="' + ink + '" stroke-width="5"/>' +
+       // '<circle cx="42" cy="96" r="4" fill="#8ee3dc"/><circle cx="58" cy="102" r="3" fill="#8ee3dc"/>' +
+    //  '</g>' +
+      //'<circle cx="191" cy="114" r="14" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>'
+  //  : '<path d="M148 154 C172 152 182 138 178 126" fill="none" stroke="' + ink + '" stroke-width="8" stroke-linecap="round"/>' +
+     // '<circle cx="178" cy="120" r="14" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>';
 
   //return '<svg class="sticker" viewBox="0 0 218 250" width="' + w + '" height="' + Math.round(w * 250 / 218) + '" role="img" aria-label="лягушонок-учёный">' +
    // '<ellipse cx="58" cy="222" rx="34" ry="17" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>' +
    // '<ellipse cx="152" cy="222" rx="34" ry="17" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>' +
    // '<path d="M30 220 L44 214 M32 228 L46 226 M180 220 L166 214 M178 228 L164 226" stroke="' + ink + '" stroke-width="4" stroke-linecap="round"/>' +
     //
-}
-document.getElementById("heroFrog").innerHTML = frog(200, "flask");
+//}
+//document.getElementById("heroFrog").innerHTML = frog(200, "flask");
 
 /* ================= КАРТИНКИ ================= */
 var BODY = "M40 44 L14.5 106 Q14.5 113.5 22 113.5 L78 113.5 Q85.5 113.5 85.5 106 L60 44 Z";
