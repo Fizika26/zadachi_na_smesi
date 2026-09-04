@@ -1,1 +1,0 @@
-# zadachi_na_smesi
