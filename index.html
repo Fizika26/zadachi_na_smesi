@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Смеси, сплавы и растворы — урок лягушонка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Nunito:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #eef6ea;
+  background-image:
+    radial-gradient(circle at 12% 6%, rgba(255,255,255,.9) 0 20%, transparent 20%),
+    radial-gradient(circle at 90% 26%, rgba(255,255,255,.65) 0 16%, transparent 16%);
+  color: #1b2e1f;
+  font-family: "Nunito", "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 18px 70px; }
+h1, h2, h3 { font-family: "Unbounded", "Nunito", sans-serif; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(30px, 6vw, 50px); font-weight: 800; letter-spacing: -.02em; }
+h2 { font-size: clamp(21px, 3.6vw, 28px); font-weight: 700; }
+p { margin: 10px 0; }
+b, strong { font-weight: 900; }
+i { font-style: italic; }
+
+.hero { padding: 34px 0 8px; }
+.hero-top { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.hero-text { flex: 1 1 320px; min-width: 260px; }
+.kicker {
+  display: inline-block; background: #f7c948; color: #4a3405;
+  border: 3px solid #23201e; border-radius: 999px; padding: 3px 14px;
+  font-weight: 900; font-size: 14px; transform: rotate(-2deg); box-shadow: 3px 3px 0 #23201e;
+}
+.hero h1 { margin: 14px 0 8px; }
+.hero .lede { font-size: 19px; max-width: 34em; }
+.sticker {
+  filter:
+    drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+    drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+    drop-shadow(2px 2px 0 #fff) drop-shadow(-2px 2px 0 #fff)
+    drop-shadow(2px -2px 0 #fff) drop-shadow(-2px -2px 0 #fff);
+}
+
+.card { background: #fffef8; border: 3px solid #23201e; border-radius: 22px;
+        padding: 20px 22px; margin: 22px 0; box-shadow: 6px 6px 0 #23201e; }
+.card.lab { background: #fff; }
+.card.mint { background: #e6f7f4; }
+.card.sun { background: #fff6e0; }
+
+.demo { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.demo-ctl { flex: 1 1 300px; min-width: 250px; }
+input[type=range] { width: 100%; accent-color: #1fa8a0; height: 28px; }
+.readout { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0 4px; }
+.pill { border: 3px solid #23201e; border-radius: 14px; padding: 6px 12px;
+        background: #fff; font-weight: 900; font-size: 15px; min-width: 112px; }
+.pill em { display: block; font-style: normal; font-weight: 700; font-size: 12px; color: #5c6b5f; }
+.pill.fixed { background: #ffe6c2; }
+.pill.conc { background: #d9f2ef; }
+.say { position: relative; background: #f1fbe9; border: 3px solid #23201e;
+       border-radius: 16px; padding: 10px 14px; font-weight: 700; margin-top: 12px; }
+.say::before { content: ""; position: absolute; left: 26px; top: -13px;
+               border: 7px solid transparent; border-bottom-color: #23201e; }
+.say::after { content: ""; position: absolute; left: 29px; top: -8px;
+              border: 6px solid transparent; border-bottom-color: #f1fbe9; }
+
+.formula { font-family: "Unbounded", sans-serif; font-weight: 800;
+           font-size: clamp(28px, 6vw, 40px); text-align: center; margin: 6px 0 16px; }
+.formula em { font-style: normal; color: #e0821a; }
+.legend-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+.legend-grid > div { flex: 1 1 190px; border: 3px solid #23201e; border-radius: 16px;
+                     padding: 12px 14px; background: #fff; }
+.legend-grid b { font-family: "Unbounded", sans-serif; font-size: 22px; }
+
+.task-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.tag { background: #1fa8a0; color: #fff; border: 3px solid #23201e; border-radius: 12px;
+       padding: 2px 11px; font-family: "Unbounded", sans-serif; font-weight: 600; font-size: 14px; }
+.quote { border-left: 8px solid #f7c948; background: #fffdf2;
+         padding: 10px 16px; margin: 14px 0; font-style: italic; }
+.scene { text-align: center; margin: 18px 0 6px; }
+.scene svg { vertical-align: bottom; }
+.scene .op { display: inline-block; font-size: 26px; font-weight: 900; margin: 0 6px 34px; vertical-align: middle; }
+.cap { font-size: 13px; line-height: 1.35; margin-top: 6px; }
+.cap b { color: #b46708; }
+.cap .dim { color: #8b968d; }
+.slot { display: inline-block; text-align: center; vertical-align: bottom; margin: 0 2px; }
+
+.step { font-family: "Unbounded", sans-serif; font-weight: 600; font-size: 15px;
+        margin: 24px 0 8px; padding-top: 16px; border-top: 3px dotted #c3d3c0; }
+
+button { font-family: "Nunito", sans-serif; font-weight: 900; font-size: 16px;
+         border: 3px solid #23201e; border-radius: 14px; padding: 9px 18px;
+         background: #f7c948; color: #23201e; cursor: pointer;
+         box-shadow: 4px 4px 0 #23201e; transition: transform .08s, box-shadow .08s; }
+button:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #23201e; }
+button:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #23201e; }
+button:focus-visible { outline: 3px solid #1fa8a0; outline-offset: 3px; }
+button.ghost { background: #fff; }
+button.small { font-size: 14px; padding: 6px 12px; box-shadow: 3px 3px 0 #23201e; }
+button.pick { background: #fff; margin: 4px 6px 4px 0; box-shadow: 3px 3px 0 #23201e; }
+button.pick.ok { background: #b7e4a0; }
+button.pick.no { background: #f6c1c1; }
+button[disabled] { cursor: default; opacity: .95; }
+
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 15px; }
+th, td { border: 2px solid #23201e; padding: 6px 8px; text-align: center; }
+th { background: #1b2e1f; color: #fff; font-weight: 700; font-size: 14px; }
+th:first-child { text-align: left; }
+td.rowlab { text-align: left; background: #f4f7f2; font-weight: 700; }
+td.cell { background: #fff; cursor: pointer; min-width: 84px; height: 46px; font-weight: 700; }
+td.cell.empty { background: repeating-linear-gradient(45deg,#fff,#fff 7px,#f0f4ee 7px,#f0f4ee 14px); }
+td.cell.active { outline: 4px solid #1fa8a0; outline-offset: -4px; }
+td.cell.ok { background: #cdeeba; }
+td.cell.no { background: #f8c9c9; }
+
+.bank { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px;
+        padding: 12px; border: 3px dashed #23201e; border-radius: 16px; background: #fdfdf6; }
+.bank .hint { width: 100%; font-size: 13px; color: #5c6b5f; font-weight: 700; margin: -2px 0 2px; }
+.chipb { font-family: "Nunito", sans-serif; font-weight: 900; font-size: 15px;
+         border: 3px solid #23201e; border-radius: 12px; padding: 6px 12px;
+         background: #ffe6c2; cursor: pointer; box-shadow: 3px 3px 0 #23201e; }
+.chipb:hover { transform: translate(1px,1px); box-shadow: 2px 2px 0 #23201e; }
+.chipb.used { visibility: hidden; }
+
+.eqline { display: flex; align-items: center; justify-content: center; gap: 12px;
+          flex-wrap: wrap; background: #fff; border: 3px solid #23201e; border-radius: 16px;
+          padding: 14px; margin: 12px 0; font-size: 19px; font-weight: 900; }
+.drop { display: inline-block; min-width: 150px; min-height: 46px; line-height: 40px;
+        border: 3px dashed #7c8b7d; border-radius: 12px; background: #fbfdf9; cursor: pointer;
+        padding: 0 12px; color: #8b968d; font-size: 15px; }
+.drop.full { border-style: solid; border-color: #23201e; background: #ffe6c2; color: #1b2e1f; }
+.drop.ok { background: #cdeeba; }
+.drop.no { background: #f8c9c9; }
+.drop.aim { border-color: #1fa8a0; }
+
+.verdict { font-weight: 900; margin-left: 10px; }
+.verdict.ok { color: #0f7a44; }
+.verdict.no { color: #b4341f; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+.ansfield { font-family: "Nunito", sans-serif; font-size: 17px; font-weight: 700; width: 120px;
+            border: 3px solid #23201e; border-radius: 12px; padding: 7px 10px; background: #fffdf2; }
+.ansfield:focus-visible { outline: 3px solid #1fa8a0; outline-offset: 2px; }
+.hidden { display: none; }
+.reveal { background: #f4f7f2; border: 3px solid #23201e; border-radius: 16px; padding: 4px 16px 12px; margin-top: 12px; }
+.ans { font-family: "Unbounded", sans-serif; font-weight: 700; color: #0f7a44; font-size: 20px; }
+.warn { font-size: 14px; background: #ffeceb; border: 3px solid #23201e; border-radius: 14px; padding: 10px 14px; }
+
+.drill { border: 3px solid #23201e; border-radius: 18px; background: #fff; padding: 16px 18px; margin: 14px 0; }
+ol.steps { padding-left: 22px; margin: 10px 0 0; }
+ol.steps li { margin-bottom: 8px; }
+footer { text-align: center; padding: 30px 0 10px; color: #55654f; font-size: 14px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .scene svg { transform: scale(.78); transform-origin: bottom center; }
+  .card { padding: 16px 14px; box-shadow: 4px 4px 0 #23201e; }
+  table { font-size: 13px; }
+  th, td { padding: 5px 4px; }
+  td.cell { min-width: 62px; }
+  .drop { min-width: 120px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-top">
+    <div class="hero-text">
+      <span class="kicker">урок лягушонка</span>
+      <h1>Смеси, сплавы и растворы</h1>
+      <p class="lede">Три задачи, которые выглядят по-разному, решаются одним движением. Секрет в том, чтобы найти то, что при перемешивании не меняется.</p>
+    </div>
+    <div id="heroFrog"></div>
+  </div>
+</header>
+
+<section class="card lab">
+  <h2>Потрогайте руками</h2>
+  <p>В колбе 30 кг морской воды, соли в ней 8 %. Доливайте пресную воду и следите за числами.</p>
+  <div class="demo">
+    <div id="demoFlask"></div>
+    <div class="demo-ctl">
+      <label for="add"><b>Долить пресной воды:</b> <span id="addLbl">0 кг</span></label>
+      <input type="range" id="add" min="0" max="30" step="0.5" value="0">
+      <div class="readout">
+        <div class="pill"><em>раствор, M</em><span id="mOut">30 кг</span></div>
+        <div class="pill fixed"><em>соль, m</em><span id="sOut">2,4 кг</span></div>
+        <div class="pill conc"><em>концентрация, a</em><span id="cOut">8,0 %</span></div>
+      </div>
+      <div class="say" id="say">Соли ровно 2,4 кг — сколько воды ни лей, оранжевый слой не подрастёт.</div>
+    </div>
+  </div>
+</section>
+
+<section class="card sun">
+  <h2>Одна формула на все задачи</h2>
+  <div class="formula">m = M · <em>a</em></div>
+  <div class="legend-grid">
+    <div><b>m</b><br>масса чистого вещества: соли, меди, сухой основы гриба</div>
+    <div><b>M</b><br>масса всего раствора, сплава или смеси</div>
+    <div><b>a</b><br>концентрация. В таблице пишем проценты, в уравнение подставляем долю: 45 % = 0,45</div>
+  </div>
+  <p style="margin-top:16px">Дальше всё держится на одном наблюдении: <b>что-то одно остаётся неизменным</b>. Обычно это масса чистого вещества. Её значение «до» и «после» и приравнивают — так появляется уравнение.</p>
+</section>
+
+<div id="tasks"></div>
+
+<section class="card mint">
+  <h2>Проверьте себя</h2>
+  <p>Четыре задачи на тот же приём. Ответ — число, дробную часть можно писать через запятую.</p>
+  <div id="drills"></div>
+</section>
+
+
+<footer>Задачи взяты из школьной методички по теме «Сплавы, смеси, растворы». Похожие есть в каталогах РешуОГЭ и РешуЕГЭ.</footer>
+</div>
+
+<script>
+function each(list, fn) { for (var i = 0; i < list.length; i++) fn(list[i], i); }
+function el(tag, cls, html) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+function shuffle(a) {
+  for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+
+/* ================= ЛЯГУШОНОК ================= */
+function frog(w, pose) {
+  var ink = "#23201e";
+  var arms = pose === "flask"
+    ? '<path d="M148 170 C186 168 196 142 191 118" fill="none" stroke="' + ink + '" stroke-width="8" stroke-linecap="round"/>' +
+      '<g transform="translate(164,38) scale(0.55)">' +
+        '<path d="M40 44 L14.5 106 Q14.5 113.5 22 113.5 L78 113.5 Q85.5 113.5 85.5 106 L60 44 Z" fill="#d8f2f7"/>' +
+        '<path d="M28 84 L72 84 L85.5 106 Q85.5 113.5 78 113.5 L22 113.5 Q14.5 113.5 14.5 106 Z" fill="#1fa8a0"/>' +
+        '<path d="M40 44 L14.5 106 Q14.5 113.5 22 113.5 L78 113.5 Q85.5 113.5 85.5 106 L60 44 Z" fill="none" stroke="' + ink + '" stroke-width="6" stroke-linejoin="round"/>' +
+        '<path d="M40 44 L40 16 M60 44 L60 16" stroke="' + ink + '" stroke-width="6"/>' +
+        '<rect x="34" y="6" width="32" height="11" rx="5" fill="#d8f2f7" stroke="' + ink + '" stroke-width="5"/>' +
+        '<circle cx="42" cy="96" r="4" fill="#8ee3dc"/><circle cx="58" cy="102" r="3" fill="#8ee3dc"/>' +
+      '</g>' +
+      '<circle cx="191" cy="114" r="14" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>'
+    : '<path d="M148 154 C172 152 182 138 178 126" fill="none" stroke="' + ink + '" stroke-width="8" stroke-linecap="round"/>' +
+      '<circle cx="178" cy="120" r="14" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>';
+
+  return '<svg class="sticker" viewBox="0 0 218 250" width="' + w + '" height="' + Math.round(w * 250 / 218) + '" role="img" aria-label="лягушонок-учёный">' +
+    '<ellipse cx="58" cy="222" rx="34" ry="17" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>' +
+    '<ellipse cx="152" cy="222" rx="34" ry="17" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>' +
+    '<path d="M30 220 L44 214 M32 228 L46 226 M180 220 L166 214 M178 228 L164 226" stroke="' + ink + '" stroke-width="4" stroke-linecap="round"/>' +
+    '<path d="M64 148 C56 178 56 202 60 218 L150 218 C154 202 154 178 146 148 Z" fill="#fdfdfb" stroke="' + ink + '" stroke-width="6" stroke-linejoin="round"/>' +
+    '<path d="M105 150 L105 218" stroke="' + ink + '" stroke-width="4"/>' +
+    '<circle cx="97" cy="186" r="4" fill="' + ink + '"/><circle cx="97" cy="204" r="4" fill="' + ink + '"/>' +
+    '<ellipse cx="105" cy="106" rx="70" ry="56" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>' +
+    '<circle cx="66" cy="52" r="35" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>' +
+    '<circle cx="144" cy="52" r="35" fill="#8fce3f" stroke="' + ink + '" stroke-width="6"/>' +
+    '<circle cx="66" cy="52" r="26" fill="#ffffff" stroke="' + ink + '" stroke-width="5"/>' +
+    '<circle cx="144" cy="52" r="26" fill="#ffffff" stroke="' + ink + '" stroke-width="5"/>' +
+    '<circle cx="72" cy="58" r="13" fill="' + ink + '"/><circle cx="138" cy="58" r="13" fill="' + ink + '"/>' +
+    '<circle cx="66" cy="50" r="5.5" fill="#fff"/><circle cx="132" cy="50" r="5.5" fill="#fff"/>' +
+    '<circle cx="78" cy="68" r="2.6" fill="#fff"/><circle cx="144" cy="68" r="2.6" fill="#fff"/>' +
+    '<circle cx="92" cy="96" r="3.4" fill="' + ink + '"/><circle cx="118" cy="96" r="3.4" fill="' + ink + '"/>' +
+    '<path d="M62 116 Q105 166 148 116 Q105 134 62 116 Z" fill="#8c3552" stroke="' + ink + '" stroke-width="6" stroke-linejoin="round"/>' +
+    '<path d="M88 143 Q105 156 122 143 Q105 150 88 143 Z" fill="#f28ab0"/>' +
+    '<ellipse cx="48" cy="122" rx="15" ry="10" fill="#f4a3c0" opacity=".85"/>' +
+    '<ellipse cx="162" cy="122" rx="15" ry="10" fill="#f4a3c0" opacity=".85"/>' +
+    '<path d="M82 146 L105 176 L128 146" fill="#2f4a63" stroke="' + ink + '" stroke-width="5" stroke-linejoin="round"/>' +
+    '<circle cx="105" cy="168" r="10" fill="#f0709b" stroke="' + ink + '" stroke-width="5"/>' +
+    arms +
+  '</svg>';
+}
+document.getElementById("heroFrog").innerHTML = frog(200, "flask");
+
+/* ================= КАРТИНКИ ================= */
+var BODY = "M40 44 L14.5 106 Q14.5 113.5 22 113.5 L78 113.5 Q85.5 113.5 85.5 106 L60 44 Z";
+var Y_BOT = 113, USABLE = 69, uid = 0;
+
+function flask(w, cap, pure, rest, add) {
+  uid++;
+  var id = "cl" + uid, out = "", y = Y_BOT;
+  function layer(mass, colour, minH) {
+    if (mass <= 0) return "";
+    var h = mass / cap * USABLE;
+    if (minH && h < minH) h = minH;
+    var top = Math.max(44, y - h), s = y;
+    y = top;
+    return '<rect x="0" y="' + top.toFixed(2) + '" width="100" height="' + (s - top).toFixed(2) + '" fill="' + colour + '"/>';
+  }
+  out += layer(pure, "#e8901c", 4.5);
+  out += layer(rest, "#1fa8a0");
+  out += layer(add, "#bfe0ef");
+  return '<svg viewBox="0 0 100 130" width="' + w + '" height="' + Math.round(w * 1.3) + '" aria-hidden="true">' +
+    '<defs><clipPath id="' + id + '"><path d="' + BODY + '"/></clipPath></defs>' +
+    '<path d="' + BODY + '" fill="#eef8fb"/>' +
+    '<g clip-path="url(#' + id + ')">' + out + '</g>' +
+    '<path d="' + BODY + '" fill="none" stroke="#23201e" stroke-width="4" stroke-linejoin="round"/>' +
+    '<path d="M40 44 L40 15 M60 44 L60 15" stroke="#23201e" stroke-width="4"/>' +
+    '<rect x="34" y="6" width="32" height="10" rx="4.5" fill="#dcf0f7" stroke="#23201e" stroke-width="3.5"/>' +
+    '<path d="M46 60 L31 94" stroke="#fff" stroke-width="4" opacity=".55" stroke-linecap="round"/>' +
+    '</svg>';
+}
+
+var CAP = "M7 64 C7 27 25 11 50 11 C75 11 93 27 93 64 C93 68 88 70 82 70 L18 70 C12 70 7 68 7 64 Z";
+var STEM = "M37 66 C34 84 34 98 31 108 Q31 115 39 115 L61 115 Q69 115 69 108 C66 98 66 84 63 66 Z";
+function mushroom(w, dryFrac) {
+  uid++;
+  var id = "mk" + uid, split = 115 - dryFrac * 104;
+  return '<svg viewBox="0 0 100 128" width="' + w + '" height="' + Math.round(w * 1.28) + '" aria-hidden="true">' +
+    '<defs><clipPath id="' + id + '"><path d="' + CAP + '"/><path d="' + STEM + '"/></clipPath></defs>' +
+    '<g clip-path="url(#' + id + ')">' +
+      '<rect x="0" y="0" width="100" height="' + split.toFixed(2) + '" fill="#1fa8a0"/>' +
+      '<rect x="0" y="' + split.toFixed(2) + '" width="100" height="' + (128 - split).toFixed(2) + '" fill="#e8901c"/>' +
+    '</g>' +
+    '<circle cx="30" cy="33" r="7" fill="#fff" opacity=".8"/>' +
+    '<circle cx="60" cy="25" r="5.5" fill="#fff" opacity=".8"/>' +
+    '<circle cx="72" cy="47" r="4.5" fill="#fff" opacity=".8"/>' +
+    '<path d="' + CAP + '" fill="none" stroke="#23201e" stroke-width="4.5" stroke-linejoin="round"/>' +
+    '<path d="' + STEM + '" fill="none" stroke="#23201e" stroke-width="4.5" stroke-linejoin="round"/>' +
+    '</svg>';
+}
+function steamPic(w) {
+  return '<svg viewBox="0 0 100 128" width="' + w + '" height="' + Math.round(w * 1.28) + '" aria-hidden="true">' +
+    '<path d="M25 100 C10 84 12 60 28 50 C24 34 36 22 50 26 C60 14 80 20 80 36 C92 44 90 64 76 70" ' +
+    'fill="none" stroke="#7fb6c9" stroke-width="4.5" stroke-dasharray="8 6" stroke-linecap="round"/>' +
+    '<circle cx="40" cy="64" r="8" fill="#bfe0ef" stroke="#23201e" stroke-width="3"/>' +
+    '<circle cx="62" cy="50" r="6" fill="#bfe0ef" stroke="#23201e" stroke-width="3"/>' +
+    '<circle cx="55" cy="82" r="10" fill="#bfe0ef" stroke="#23201e" stroke-width="3"/>' +
+    '</svg>';
+}
+function slot(pic, cap) { return '<span class="slot"><span>' + pic + '</span><div class="cap">' + cap + '</div></span>'; }
+function op(sym) { return '<span class="op">' + sym + '</span>'; }
+
+/* ================= ЖИВАЯ КОЛБА ================= */
+var addEl = document.getElementById("add");
+function num(v) { return v.toFixed(1).replace(".0", "").replace(".", ","); }
+function paintDemo() {
+  var x = parseFloat(addEl.value), M = 30 + x, c = 2.4 / M * 100;
+  document.getElementById("demoFlask").innerHTML = flask(150, 62, 2.4, 27.6, x);
+  document.getElementById("addLbl").textContent = num(x) + " кг";
+  document.getElementById("mOut").textContent = num(M) + " кг";
+  document.getElementById("cOut").textContent = c.toFixed(1).replace(".", ",") + " %";
+  var say = document.getElementById("say");
+  if (Math.abs(c - 5) < 0.06) say.innerHTML = "Ровно 5 %! Долили <b>18 кг</b> — это и есть ответ первой задачи.";
+  else if (c < 5) say.textContent = "Перелили: соли стало меньше 5 %. Отмотайте назад.";
+  else if (x === 0) say.innerHTML = "Соли ровно 2,4 кг — сколько воды ни лей, оранжевый слой не подрастёт.";
+  else say.textContent = "Уровень растёт, соли столько же — процент падает. Ещё немного до 5 %.";
+}
+addEl.addEventListener("input", paintDemo);
+paintDemo();
+
+/* ================= ДАННЫЕ ЗАДАЧ ================= */
+var TASKS = [
+{
+  n: 1, title: "Морская вода",
+  quote: "Морская вода содержит 8 % соли. Сколько килограммов пресной воды нужно добавить к 30 кг морской воды, чтобы содержание соли составило 5 %?",
+  scene:
+    slot(flask(92, 55, 2.4, 27.6, 0), 'Морская вода<br>30 кг, 8 %<br><b>соль 2,4 кг</b>') + op("+") +
+    slot(flask(92, 55, 0, 0, 18), 'Пресная вода<br><i>x</i> кг, 0 %<br><span class="dim">соли нет</span>') + op("=") +
+    slot(flask(92, 55, 2.4, 45.6, 0), 'Новый раствор<br>30 + <i>x</i> кг, 5 %<br><b>соль 2,4 кг</b>'),
+  pickQ: "Что не изменится, когда мы дольём пресную воду?",
+  picks: [
+    { t: "Масса раствора", ok: 0, note: "Масса раствора как раз растёт: было 30 кг, стало 30 + <i>x</i>." },
+    { t: "Масса соли", ok: 1, note: "Верно. Доливаем воду, а соли не прибавляется — её так и остаётся 2,4 кг." },
+    { t: "Процент соли", ok: 0, note: "Процент меняется, ради этого задача и затевалась: 8 % превращается в 5 %." }
+  ],
+  cols: ["Раствор, M", "Концентрация, a", "Вещество, m"],
+  rows: [
+    { label: "Морская вода", cells: ["30", "8 %", "2,4"] },
+    { label: "Пресная вода", cells: ["<i>x</i>", "0 %", "0"] },
+    { label: "Новый раствор", cells: ["30 + <i>x</i>", "5 %", "0,05 · (30 + <i>x</i>)"] }
+  ],
+  extra: ["30 − <i>x</i>", "3 %", "2,4 + <i>x</i>", "0,08 · (30 + <i>x</i>)"],
+  eqRows: [0, 2],
+  eqNote: "Приравнивать надо массу соли: в морской воде и в новом растворе её поровну.",
+  answer: 18, unit: "кг",
+  solution: '<div class="eqline" style="border-style:dashed">0,05 · (30 + <i>x</i>) = 2,4 &nbsp;→&nbsp; 30 + <i>x</i> = 48 &nbsp;→&nbsp; <i>x</i> = 18</div>' +
+            '<p class="ans">Ответ: 18 кг.</p>'
+},
+{
+  n: 2, title: "Сплав олова с медью",
+  quote: "Сплав олова с медью массой 12 кг содержит 45 % меди. Сколько чистого олова надо добавить, чтобы получить сплав, содержащий 40 % меди?",
+  scene:
+    slot(flask(92, 15, 5.4, 6.6, 0), 'Сплав<br>12 кг, 45 %<br><b>медь 5,4 кг</b>') + op("+") +
+    slot(flask(92, 15, 0, 0, 1.5), 'Чистое олово<br><i>x</i> кг, 0 %<br><span class="dim">меди нет</span>') + op("=") +
+    slot(flask(92, 15, 5.4, 8.1, 0), 'Новый сплав<br>12 + <i>x</i> кг, 40 %<br><b>медь 5,4 кг</b>'),
+  pickQ: "Какое вещество здесь «чистое», то есть неизменное?",
+  picks: [
+    { t: "Олово", ok: 0, note: "Олово мы как раз доливаем, его становится больше." },
+    { t: "Медь", ok: 1, note: "Верно. Меди в сплаве было 5,4 кг, столько же и останется." },
+    { t: "Весь сплав", ok: 0, note: "Масса сплава растёт на <i>x</i> кг — именно её мы и ищем." }
+  ],
+  cols: ["Сплав, M", "Концентрация, a", "Медь, m"],
+  rows: [
+    { label: "Сплав", cells: ["12", "45 %", "5,4"] },
+    { label: "Чистое олово", cells: ["<i>x</i>", "0 %", "0"] },
+    { label: "Новый сплав", cells: ["12 + <i>x</i>", "40 %", "0,4 · (12 + <i>x</i>)"] }
+  ],
+  extra: ["12 − <i>x</i>", "55 %", "5,4 + <i>x</i>", "0,45 · (12 + <i>x</i>)"],
+  eqRows: [0, 2],
+  eqNote: "Приравнивать надо массу меди: в старом и новом сплаве её одинаково.",
+  answer: 1.5, unit: "кг",
+  solution: '<div class="eqline" style="border-style:dashed">0,4 · (12 + <i>x</i>) = 5,4 &nbsp;→&nbsp; 12 + <i>x</i> = 13,5 &nbsp;→&nbsp; <i>x</i> = 1,5</div>' +
+            '<p class="ans">Ответ: 1,5 кг.</p>' +
+            '<p class="warn">В методичках эту задачу часто подписывают «олово — чистое вещество в сплаве». Это описка: доливаем мы как раз олово, а неизменной остаётся медь.</p>'
+},
+{
+  n: 3, title: "Грибы",
+  quote: "Свежие грибы содержат 90 % воды по массе, а сухие — 12 %. Сколько получится сухих грибов из 22 кг свежих?",
+  scene:
+    slot(mushroom(96, 0.10), 'Свежий гриб<br>22 кг, 10 % основы<br><b>основа 2,2 кг</b>') + op("→") +
+    slot(steamPic(66), 'Испарилось воды<br>22 − <i>x</i> кг<br><span class="dim">основы нет</span>') + op("+") +
+    slot(mushroom(34, 0.88), 'Сухой гриб<br><i>x</i> кг, 88 % основы<br><b>основа 2,2 кг</b>'),
+  pickQ: "Здесь ничего не доливают, а наоборот — вода уходит. Что остаётся неизменным?",
+  picks: [
+    { t: "Вода", ok: 0, note: "Вода уходит, её становится меньше на 22 − <i>x</i> кг." },
+    { t: "Сухая основа гриба", ok: 1, note: "Верно. Испаряется только вода, а сухая основа — 2,2 кг — никуда не девается." },
+    { t: "Масса гриба", ok: 0, note: "Масса гриба падает почти в девять раз." }
+  ],
+  pre: 'Считаем не воду, а сухую основу: в свежем грибе её 100 % − 90 % = <b>10 %</b>, в сухом 100 % − 12 % = <b>88 %</b>.',
+  cols: ["Грибы, M", "Концентрация, a", "Сухая основа, m"],
+  rows: [
+    { label: "Свежие грибы", cells: ["22", "10 %", "2,2"] },
+    { label: "Испарилось воды", cells: ["22 − <i>x</i>", "0 %", "0"] },
+    { label: "Сухие грибы", cells: ["<i>x</i>", "88 %", "0,88 · <i>x</i>"] }
+  ],
+  extra: ["22 + <i>x</i>", "90 %", "12 %", "0,12 · <i>x</i>"],
+  eqRows: [0, 2],
+  eqNote: "Приравнивать надо сухую основу: в свежем и в сухом грибе её поровну.",
+  answer: 2.5, unit: "кг",
+  solution: '<div class="eqline" style="border-style:dashed">0,88 · <i>x</i> = 2,2 &nbsp;→&nbsp; <i>x</i> = 2,5</div>' +
+            '<p class="ans">Ответ: 2,5 кг.</p>'
+}
+];
+
+/* ================= СБОРКА ЗАДАЧИ ================= */
+function buildTask(T) {
+  var card = el("section", "card");
+  card.innerHTML =
+    '<div class="task-head"><span class="tag">Задача ' + T.n + '</span><h2>' + T.title + '</h2></div>' +
+    '<p class="quote">' + T.quote + '</p>' +
+    '<div class="scene">' + T.scene + '</div>';
+
+  /* ---- шаг 1 ---- */
+  var s1 = el("p", "step", "Шаг 1. " + T.pickQ);
+  s1.style.borderTop = "none";
+  s1.style.paddingTop = "0";
+  card.appendChild(s1);
+  var picks = el("div");
+  var fb = el("div", "say hidden");
+  each(T.picks, function (p) {
+    var b = el("button", "pick", p.t);
+    b.addEventListener("click", function () {
+      b.classList.add(p.ok ? "ok" : "no");
+      fb.innerHTML = p.note;
+      fb.classList.remove("hidden");
+      if (p.ok) each(picks.querySelectorAll("button"), function (o) { o.disabled = true; });
+    });
+    picks.appendChild(b);
+  });
+  card.appendChild(picks);
+  card.appendChild(fb);
+
+  /* ---- шаг 2: таблица ---- */
+  card.appendChild(el("p", "step", "Шаг 2. Заполните таблицу — нажмите клетку, потом нужный блок"));
+  if (T.pre) card.appendChild(el("p", null, T.pre));
+
+  var tbl = el("table");
+  var html = "<thead><tr><th style='width:26%'></th>";
+  each(T.cols, function (c) { html += "<th>" + c + "</th>"; });
+  html += "</tr></thead><tbody>";
+  each(T.rows, function (r, ri) {
+    html += "<tr><td class='rowlab'>" + r.label + "</td>";
+    each(r.cells, function (c, ci) {
+      html += "<td class='cell empty' data-r='" + ri + "' data-c='" + ci + "'></td>";
+    });
+    html += "</tr>";
+  });
+  tbl.innerHTML = html + "</tbody>";
+  card.appendChild(tbl);
+
+  var bank = el("div", "bank");
+  bank.appendChild(el("div", "hint", "Блоки со значениями. Лишние есть — они не подойдут ни в одну клетку."));
+  card.appendChild(bank);
+
+  var ctl = el("div", "row");
+  var checkBtn = el("button", "small", "Проверить таблицу");
+  var clearBtn = el("button", "small ghost", "Очистить");
+  var verdict = el("span", "verdict");
+  ctl.appendChild(checkBtn); ctl.appendChild(clearBtn); ctl.appendChild(verdict);
+  card.appendChild(ctl);
+
+  var pool = [];
+  each(T.rows, function (r) { each(r.cells, function (c) { pool.push(c); }); });
+  each(T.extra, function (c) { pool.push(c); });
+  shuffle(pool);
+
+  var active = null, chips = [];
+
+  function freeChip(cell) {
+    var v = cell.dataset.chip, done = false;
+    each(chips, function (c) {
+      if (!done && c.dataset.val === v && c.classList.contains("used")) {
+        c.classList.remove("used"); c.disabled = false; done = true;
+      }
+    });
+    cell.innerHTML = "";
+    cell.dataset.chip = "";
+    cell.classList.add("empty");
+    cell.classList.remove("ok", "no");
+  }
+
+  each(pool, function (txt) {
+    var b = el("button", "chipb", txt);
+    b.dataset.val = txt;
+    b.addEventListener("click", function () {
+      var cell = active || tbl.querySelector("td.cell.empty");
+      if (!cell) return;
+      if (cell.dataset.chip) freeChip(cell);
+      cell.innerHTML = txt;
+      cell.dataset.chip = txt;
+      cell.classList.remove("empty", "ok", "no", "active");
+      b.classList.add("used");
+      b.disabled = true;
+      active = null;
+      verdict.textContent = "";
+    });
+    chips.push(b);
+    bank.appendChild(b);
+  });
+
+  each(tbl.querySelectorAll("td.cell"), function (cell) {
+    cell.addEventListener("click", function () {
+      if (cell.dataset.chip) { freeChip(cell); verdict.textContent = ""; return; }
+      each(tbl.querySelectorAll("td.cell"), function (c) { c.classList.remove("active"); });
+      cell.classList.add("active");
+      active = cell;
+    });
+  });
+
+  checkBtn.addEventListener("click", function () {
+    var wrong = 0, blank = 0;
+    each(tbl.querySelectorAll("td.cell"), function (cell) {
+      if (!cell.dataset.chip) { blank++; return; }
+      var want = T.rows[+cell.dataset.r].cells[+cell.dataset.c];
+      if (cell.dataset.chip === want) cell.classList.add("ok");
+      else { cell.classList.add("no"); wrong++; }
+    });
+    if (blank) { verdict.className = "verdict no"; verdict.textContent = "Пустых клеток: " + blank; }
+    else if (wrong) { verdict.className = "verdict no"; verdict.textContent = "Красные клетки надо переставить"; }
+    else { verdict.className = "verdict ok"; verdict.textContent = "Таблица собрана верно!"; }
+  });
+
+  clearBtn.addEventListener("click", function () {
+    each(tbl.querySelectorAll("td.cell"), function (cell) { if (cell.dataset.chip) freeChip(cell); });
+    verdict.textContent = "";
+    active = null;
+  });
+
+  /* ---- шаг 3: уравнение ---- */
+  card.appendChild(el("p", "step", "Шаг 3. Соберите уравнение: какие две массы вещества равны?"));
+  var eq = el("div", "eqline");
+  var dA = el("span", "drop aim", "выберите блок"), dB = el("span", "drop", "выберите блок");
+  eq.appendChild(dA); eq.appendChild(el("span", null, "=")); eq.appendChild(dB);
+  card.appendChild(eq);
+
+  var eqBank = el("div", "bank");
+  eqBank.appendChild(el("div", "hint", "Значения из столбца m"));
+  card.appendChild(eqBank);
+
+  var eqCtl = el("div", "row");
+  var eqCheck = el("button", "small", "Проверить уравнение");
+  var eqClear = el("button", "small ghost", "Очистить");
+  var eqVerdict = el("span", "verdict");
+  eqCtl.appendChild(eqCheck); eqCtl.appendChild(eqClear); eqCtl.appendChild(eqVerdict);
+  card.appendChild(eqCtl);
+
+  var aim = dA, eqChips = [];
+  function setAim(d) { aim = d; dA.classList.toggle("aim", d === dA); dB.classList.toggle("aim", d === dB); }
+  function releaseEq(d) {
+    each(eqChips, function (c) { if (c.dataset.row === d.dataset.row) { c.classList.remove("used"); c.disabled = false; } });
+    d.innerHTML = "выберите блок"; d.dataset.val = ""; d.dataset.row = "";
+    d.className = "drop";
+  }
+  each([dA, dB], function (d) {
+    d.addEventListener("click", function () {
+      if (d.dataset.val) releaseEq(d);
+      setAim(d);
+      eqVerdict.textContent = "";
+    });
+  });
+
+  each(T.rows, function (r, ri) {
+    var b = el("button", "chipb", r.cells[2]);
+    b.dataset.val = r.cells[2];
+    b.dataset.row = String(ri);
+    b.addEventListener("click", function () {
+      var d = aim.dataset.val ? (dA.dataset.val ? dB : dA) : aim;
+      if (d.dataset.val) releaseEq(d);
+      d.innerHTML = r.cells[2];
+      d.dataset.val = r.cells[2];
+      d.dataset.row = String(ri);
+      d.className = "drop full";
+      b.classList.add("used"); b.disabled = true;
+      setAim(d === dA ? dB : dA);
+      eqVerdict.textContent = "";
+    });
+    eqChips.push(b);
+    eqBank.appendChild(b);
+  });
+
+  eqCheck.addEventListener("click", function () {
+    if (!dA.dataset.val || !dB.dataset.val) {
+      eqVerdict.className = "verdict no"; eqVerdict.textContent = "Заполните обе части"; return;
+    }
+    var got = [+dA.dataset.row, +dB.dataset.row].sort().join(","),
+        want = T.eqRows.slice().sort().join(",");
+    if (got === want) {
+      dA.classList.add("ok"); dB.classList.add("ok");
+      eqVerdict.className = "verdict ok"; eqVerdict.textContent = "Уравнение верное!";
+    } else {
+      dA.classList.add("no"); dB.classList.add("no");
+      eqVerdict.className = "verdict no"; eqVerdict.innerHTML = T.eqNote;
+    }
+  });
+  eqClear.addEventListener("click", function () {
+    releaseEq(dA); releaseEq(dB); setAim(dA); eqVerdict.textContent = "";
+  });
+
+  /* ---- шаг 4: ответ ---- */
+  card.appendChild(el("p", "step", "Шаг 4. Решите уравнение и запишите ответ"));
+  var arow = el("div", "row");
+  var inp = el("input");
+  inp.className = "ansfield"; inp.type = "text"; inp.inputMode = "decimal";
+  inp.placeholder = "?"; inp.setAttribute("aria-label", "Ответ");
+  var unit = el("span", null, T.unit); unit.style.fontWeight = "700";
+  var aCheck = el("button", "small", "Проверить ответ");
+  var aVerdict = el("span", "verdict");
+  arow.appendChild(inp); arow.appendChild(unit); arow.appendChild(aCheck); arow.appendChild(aVerdict);
+  card.appendChild(arow);
+
+  function checkAns() {
+    var v = parseFloat(inp.value.replace(",", ".").replace(/\s|кг|%/g, ""));
+    if (isNaN(v)) { aVerdict.className = "verdict no"; aVerdict.textContent = "Введите число"; return; }
+    if (Math.abs(v - T.answer) < 0.01) { aVerdict.className = "verdict ok"; aVerdict.textContent = "Верно!"; }
+    else { aVerdict.className = "verdict no"; aVerdict.textContent = "Пока нет — загляните в разбор"; }
+  }
+  aCheck.addEventListener("click", checkAns);
+  inp.addEventListener("keydown", function (e) { if (e.key === "Enter") checkAns(); });
+
+  /* ---- разбор ---- */
+  var rev = el("div", "reveal hidden", T.solution);
+  var revBtn = el("button", "ghost small", "Показать разбор");
+  revBtn.style.marginTop = "16px";
+  revBtn.addEventListener("click", function () {
+    var open = !rev.classList.contains("hidden");
+    rev.classList.toggle("hidden");
+    revBtn.textContent = open ? "Показать разбор" : "Свернуть разбор";
+  });
+  card.appendChild(revBtn);
+  card.appendChild(rev);
+  return card;
+}
+var host = document.getElementById("tasks");
+each(TASKS, function (T) { host.appendChild(buildTask(T)); });
+
+/* ================= ТРЕНАЖЁР ================= */
+var drills = [
+  { q: "К 40 кг раствора, содержащего 15 % соли, долили 10 кг воды. Сколько процентов соли стало?",
+    unit: "%", a: 12,
+    s: "Соли 0,15 · 40 = 6 кг, и она не меняется. Раствора стало 50 кг, значит 6 / 50 = 0,12 = 12 %." },
+  { q: "Сплав массой 20 кг содержит 30 % меди. Сколько килограммов чистой меди надо добавить, чтобы меди стало 44 %?",
+    unit: "кг", a: 5,
+    s: "Здесь неизменно олово: его 0,7 · 20 = 14 кг, а в новом сплаве оно составит 56 %. Тогда 0,56 · (20 + x) = 14, откуда 20 + x = 25 и x = 5." },
+  { q: "Свежие фрукты содержат 80 % воды, сушёные — 20 %. Сколько сушёных фруктов выйдет из 30 кг свежих?",
+    unit: "кг", a: 7.5,
+    s: "Сухой основы 0,2 · 30 = 6 кг, и она сохраняется. В сушёных её 80 %, значит 0,8 · x = 6 и x = 7,5." },
+  { q: "Сколько воды надо выпарить из 50 кг раствора с 6 % соли, чтобы концентрация стала 10 %?",
+    unit: "кг", a: 20,
+    s: "Соли 0,06 · 50 = 3 кг. Пусть выпарили x кг, тогда 0,1 · (50 − x) = 3, откуда 50 − x = 30 и x = 20." }
+];
+var dbox = document.getElementById("drills");
+each(drills, function (d, i) {
+  var e = el("div", "drill");
+  e.innerHTML =
+    '<p style="margin-top:0"><b>' + (i + 1) + '.</b> ' + d.q + '</p>' +
+    '<div class="row"><input class="ansfield" type="text" inputmode="decimal" aria-label="Ответ" placeholder="?">' +
+    '<span style="font-weight:700">' + d.unit + '</span>' +
+    '<button class="small">Проверить</button><span class="verdict"></span></div>' +
+    '<div class="say hidden" style="margin-top:12px">' + d.s + '</div>';
+  var inp = e.querySelector("input"), btn = e.querySelector("button"),
+      v = e.querySelector(".verdict"), sol = e.querySelector(".say");
+  function check() {
+    var n = parseFloat(inp.value.replace(",", ".").replace(/\s|%|кг/g, ""));
+    if (isNaN(n)) { v.className = "verdict no"; v.textContent = "Введите число"; return; }
+    if (Math.abs(n - d.a) < 0.01) { v.className = "verdict ok"; v.textContent = "Верно!"; }
+    else { v.className = "verdict no"; v.textContent = "Не сходится — посмотрите разбор"; }
+    sol.classList.remove("hidden");
+  }
+  btn.addEventListener("click", check);
+  inp.addEventListener("keydown", function (ev) { if (ev.key === "Enter") check(); });
+  dbox.appendChild(e);
+});
+</script>
+</body>
+</html>
